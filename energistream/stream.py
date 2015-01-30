@@ -3,8 +3,6 @@ import requests
 import warnings
 import pandas as pd
 
-from energiscore.core.loads import GroupLoad as _GroupLoad
-
 #
 # Globals
 #
@@ -138,9 +136,6 @@ class EnergiStreamClient(object):
             df.set_index('timeZoneId', inplace=True)
             return df
 
-    def _get_sensor_data(self, group_id, metric, start=None, end=None, tz=None,
-                         resolution='15T', data_format='df'):
-        raise(NotImplementedError)
 
     def get_weather(self, weather_id=102, start=None, end=None, tz=None,
                     to_hour_mark=True):
@@ -546,6 +541,7 @@ class EnergiStreamClient(object):
             msg = ('Resource response code ({0}) not recognized by '
                    'client.').format(response_code)
             raise(TypeError(msg))
+
 
 class UnauthorizedAccess(ValueError):
     """
