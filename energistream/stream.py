@@ -2,6 +2,7 @@
 import requests
 import warnings
 import pandas as pd
+import sys
 
 #
 # Globals
@@ -66,6 +67,8 @@ class EnergiStreamClient(object):
         self._password = password
         self._include_sensors = include_sensors
         # Attempt to login if credentials provided
+
+        self.groups = None
         if (username is not None) & (password is not None) & attempt_login:
             self._authenticate()
             self.groups = self._get_groups()
@@ -136,6 +139,9 @@ class EnergiStreamClient(object):
             df.set_index('timeZoneId', inplace=True)
             return df
 
+    def _get_sensor_data(self, group_id, metric, start=None, end=None, tz=None,
+                         resolution='15T', data_format='df'):
+        raise(NotImplementedError)
 
     def get_weather(self, weather_id=102, start=None, end=None, tz=None,
                     to_hour_mark=True):
@@ -387,17 +393,18 @@ class EnergiStreamClient(object):
             else:
                 return response['kW']
 
-        if data_format == 'load':
-            return _GroupLoad(info=group_data,
-                              energy_type='electricity',
-                              load_type=group_data['load_type'],
-                              data_source=response['kW'])
+        raise ValueError('Unexpected data_format {0}'.format(data_format))
 
+    def get_group_data(self, group_id):
+        if self.groups is None:
+            self.groups = self._get_groups()
+        return self.groups.loc[group_id]
+
+
+    #TODO: document that this raises exception in case where demand data is empty
     def _request_demand(self, response_format, params, tz=None):
         #print response_format
         #print params
-        if response_format == 'load':
-            response_format = 'pd'
         rel_resource_path = 'data/consumption'
         group_id = params['sensorgroupid']
         response = self._perform_request(rel_resource_path, params=params)
@@ -407,6 +414,7 @@ class EnergiStreamClient(object):
         if response_format == 'json':
             return raw_json
         try:
+            #print 'HERE'
             df = pd.DataFrame(raw_json)
             df.columns = ['completed', 'start_time', 'end_time', 'kW']
             dti = pd.DatetimeIndex(df.end_time)  # + pd.offsets.Second(1)
@@ -416,9 +424,11 @@ class EnergiStreamClient(object):
             demand = df.drop(['start_time', 'end_time'], axis=1)
             demand.name = group_id
         except:
-            msg = 'GroupId {0} contains no demand data, skipping.'
-            msg = msg.format(group_id)
+            e = sys.exc_info()[0]
+            msg = 'GroupId {0} contains no demand data, skipping. Captured error: {1}'
+            msg = msg.format(group_id, e)
             warnings.warn(msg)
+            raise
         if response_format == 'pd':
             return demand
 
@@ -526,7 +536,13 @@ class EnergiStreamClient(object):
             args_dict.update(kwargs)
 
         response = requests.get(url, params=args_dict)
-        response_code = response.json()['code']
+
+        try:
+            response_code = response.json()['code']
+        except:
+            warnings.warn('Unable to parse response as json: response={0}'.format(response.text))
+            raise
+
         if handled_errors is None:
             handled_errors = []
         handled_errors.append('OK')
@@ -541,7 +557,6 @@ class EnergiStreamClient(object):
             msg = ('Resource response code ({0}) not recognized by '
                    'client.').format(response_code)
             raise(TypeError(msg))
-
 
 class UnauthorizedAccess(ValueError):
     """
