@@ -1,9 +1,9 @@
 import unittest
-import energiscore as es
-from energiscore.io.stream import UnauthorizedAccess
-
 import json
 import logging
+import energistream as es
+
+from energistream import UnauthorizedAccess
 from testfixtures import log_capture
 
 from mock import MagicMock
@@ -243,56 +243,6 @@ class UnitTestsEnergiStreamClientWithMocks(unittest.TestCase):
                               'Expected ok response')
         mocked_request_method.assert_called_with(rel_path, params,
                                                  handled_errors)
-
-    def test_perform_request_reauthenticates_given_unauthorized_access(self):
-        # setup
-        self.es_client._maintain_authentication = True
-        mocked_request_method = MagicMock(
-            side_effect=[UnauthorizedAccess(), self.mock_auth_response_ok()])
-        self.es_client._request = mocked_request_method
-        # mocking auth so that we test only the bounds of _perform_request
-        # and so it doesn't call _request()
-        self.es_client._authenticate = MagicMock()
-        rel_path = 'good/stuff.html'
-        params = {'potatos': 2, 'potattos': 3}
-        handled_errors = ['BOOM']
-        # unit under test
-        response = self.es_client._perform_request(
-            rel_path,
-            params,
-            handled_errors,
-            reauthenticate=True)
-        # verify
-        self.verify.str_equal('OK', response.json()['code'],
-                              'Expected ok response')
-        mocked_request_method.assert_called_with(rel_path, params,
-                                                 handled_errors)
-        self.assertEqual(mocked_request_method.call_count, 2,
-                         'Expected authenticate to be called once for failure '
-                         'and once to retry')
-
-    def test_perform_request_throws_unauthorized_access_when_reauthenticate_false(
-            self):
-        # setup
-        self.es_client._maintain_authentication = True
-        mocked_request_method = MagicMock(side_effect=UnauthorizedAccess())
-        self.es_client._request = mocked_request_method
-        # mocking auth so that we test only the bounds of _perform_request
-        # and so it doesn't call _request()
-        self.es_client._authenticate = MagicMock()
-        rel_path = 'fail/stuff.html'
-        params = {'potatos': 2, 'potattos': 3}
-        handled_errors = ['BOOM']
-        try:
-            # unit under test
-            self.es_client._perform_request(rel_path, params, handled_errors,
-                                            reauthenticate=False)
-            # verify
-            self.fail("Expected UnauthorizedAccess error")
-        except UnauthorizedAccess:
-            # expected case
-            mocked_request_method.assert_called_with(rel_path, params,
-                                                     handled_errors)
 
     def test_get_weather(self):
         # setup
