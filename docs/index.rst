@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   source/includeme
    _examples/stream_examples
 
 
