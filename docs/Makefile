@@ -187,3 +187,9 @@ notebooks:
 	mkdir -p _examples
 	(cd _examples; find ../../examples -maxdepth 1 -type f -name '*.ipynb' | xargs ipython nbconvert --to rst )
 
+published:
+
+	cd ../../sphinxdoc-energistream-py-docs/html; 
+	$ git add -A
+	$ git commit -m “Automatic_Commit”
+	
