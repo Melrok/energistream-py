@@ -47,8 +47,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'EnergiScore Web Documentation'
-copyright = u'2015, Harrison Fross'
+project = u'EnergiStream API Client'
+copyright = u'2015, MelRok LLC'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
