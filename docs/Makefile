@@ -191,5 +191,5 @@ published:
 
 	cd ../../sphinxdoc-energistream-py-docs/html; 
 	git add -A
-	git commit -m “Automatic”
+	git commit -m “Automatic_Commit_Message”
 	
