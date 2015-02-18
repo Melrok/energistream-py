@@ -1,8 +1,10 @@
-# EnergiStream
+EnergiStream
+************
 
 EnergiStream is an open source Python client for interacting with EnergiStream API, from MelRok.
 
-###Installation
+Installation
+^^^^^^^^^^^^
 
 To install EnergiStream from source, clone the git repository to your local machine:
 
@@ -10,13 +12,14 @@ To install EnergiStream from source, clone the git repository to your local mach
 $ git clone git@github.com:melrok/energistream-py.git
 ```
 
-In the ``energistream`` root directory (same one where you found this file after cloning the git repo), execute:
+In the ```energistream``` root directory (same one where you found this file after cloning the git repo), execute:
 
 ```sh
 $ sudo pip install -e .
 ```
 
-###Dependencies
+Dependencies
+^^^^^^^^^^^^
 
 EnergiStream has a few key dependancies:
 
@@ -30,16 +33,15 @@ All requirements are specified in the `requirements.txt`. One can attempt to ins
 $ sudo pip install -r requirements.txt -e .
 ```
 
-
-
-
-## EnergiStream Guide
+EnergiStream Guide
+******************
 
 A quick guide to some of the core EnergiStream functionality.
 
 **Note** : Always refer to the doctrings for all methods for a detailed summary of the functionality.
 
-### Importing
+Importing
+^^^^^^^^^
 
 To import the energistream library.
 
@@ -47,7 +49,8 @@ To import the energistream library.
 import energistream as es # Imports the Energistream Library
 ```
 
-###Client Instantiation and Authentication
+Client Instantiation and Authentication
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 EnergiStreamClient takes a valid username and password and establishes a unique session with temporary credentials.
 
@@ -67,16 +70,18 @@ The `is_authenticated` method returns a simple boolean true or false when asked 
 stream.is_authenticated
 ```
 
-###External Data
+External Data
+^^^^^^^^^^^^^
 
-The `get_weather` method returns a dataframe of hourly temperature and relative humidity data for the instantiated client's associated physical location. 
+The `get_weather` method returns a dataframe of hourly temperature and relative humidity data for the instantiated client's associated physical location.
 >**Note**: This data is collected from third party sources. Weather ID is an energistream unique key and not associated to any third party ID schema.
 
 ```python
 stream.get_weather(weather_id = 102, start = '12/29/2014', end = '1/29/2015')
 ```
 
-###Energistream Data and Metadata
+Energistream Data and Metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `get_energy` method accepts a sensor ID and returns a dataframe relating active and reactive energy, current and voltage RMS, and total Energy.
 
@@ -109,9 +114,9 @@ the boards serial number, version, display name, and model.
 stream.get_boards
 ```
 
-The `get_demand` method returns power data for a given sensor group(demand or generation) at multiple resolutions (1, 5, 10, 15, and 30 minutes, daily, weekly, monthly, and yearly). Start and end date may be specified as well as the timezone and desired resolution. 
+The `get_demand` method returns power data for a given sensor group(demand or generation) at multiple resolutions (1, 5, 10, 15, and 30 minutes, daily, weekly, monthly, and yearly). Start and end date may be specified as well as the timezone and desired resolution.
 
->**Note**: Defaults to the last thirty days and fifteen minute resolution.
+**Note**: Defaults to the last thirty days and fifteen minute resolution.
 
 ```python
 stream.get_demand(157)
