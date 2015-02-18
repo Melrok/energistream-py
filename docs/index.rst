@@ -6,6 +6,8 @@
 Welcome to EnergiScore Web Documentation's documentation!
 =========================================================
 
+Now I'm making this index different!
+
 Contents:
 
 .. toctree::
