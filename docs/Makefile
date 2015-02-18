@@ -190,6 +190,6 @@ notebooks:
 published:
 
 	cd ../../sphinxdoc-energistream-py-docs/html; 
-	$ git add -A
-	$ git commit -m “Automatic_Commit”
+	git add -A
+	git commit -m “Automatic_Commit”
 	
