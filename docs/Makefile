@@ -192,5 +192,5 @@ published:
 	cd ../../sphinxdoc-energistream-py-docs/html; 
 	git add -A
 	git commit -m “Automatic_Commit”
-	git push origin gh_pages
+	git push origin gh-pages
 	
