@@ -5,7 +5,8 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = ../../sphinxdoc-energistream-py-docs
+BUILDDIR      = _build
+DEPLOYDIR     = ../../sphinxdoc-energistream-py-docs
 
 
 # User-friendly check for sphinx-build
@@ -50,7 +51,7 @@ help:
 clean:
 	rm -rf _build rm -rf _examples
 	@echo
-	@echo "rm -rf $(BUILDDIR) as original command to clear Build Directory" 
+	@echo "rm -rf $(BUILDDIR) as original command to clear Build Directory"
 
 
 html:
@@ -182,14 +183,26 @@ pseudoxml:
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
 
 
-notebooks: 
+notebooks:
 
 	mkdir -p _examples
 	(cd _examples; find ../../examples -maxdepth 1 -type f -name '*.ipynb' | xargs ipython nbconvert --to rst )
 
-published:
+deploy:
 
-	cd ../../sphinxdoc-energistream-py-docs/html; 
-	git add -A
-	git commit -m “Automatic_Commit”
-	
+	mkdir $(DEPLOYDIR) || true
+	cp -rp $(BUILDDIR)/html $(DEPLOYDIR)
+	(cd $(DEPLOYDIR)/html \
+	 && git init \
+	 && git remote add origin git@github.com:Melrok/energistream-py.git \
+	 && git checkout -b gh-pages \
+	 && touch .nojekyll \
+	 && git add . \
+	 && git commit -m 'Update documentation build.' \
+	 && git push -f origin gh-pages)
+	echo "Finished deploying to GitHub Pages!"
+	echo "SUCCESS!"
+
+clean_deploy:
+	rm -rf $(DEPLOYDIR)
+	echo "Successfully removed deployment directory: $(DEPLOYDIR)"
