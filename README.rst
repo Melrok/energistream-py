@@ -36,7 +36,7 @@ $ sudo pip install -r requirements.txt -e .
 EnergiStream Guide
 ******************
 
-A quick guide to some of the core EnergiStream functionality.
+A quick guide to some of the core EnergiStream functionality. Examples and additional documentation are available at [GitHub Pages](http://melrok.github.io/energistream-py/)
 
 **Note** : Always refer to the doctrings for all methods for a detailed summary of the functionality.
 
