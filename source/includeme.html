@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>README &mdash; EnergiStream API Client 0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="EnergiStream API Client 0 documentation" href="../index.html"/>
+        <link rel="next" title="Getting Started" href="../_examples/stream_examples.html"/>
+        <link rel="prev" title="Welcome to the EnergiStream API Client documentation!" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> EnergiStream API Client</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">README</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#energistream">EnergiStream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#energistream-guide">EnergiStream Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-instantiation-and-authentication">Client Instantiation and Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-data">External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#energistream-data-and-metadata">Energistream Data and Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/stream_examples.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/stream_examples.html#client-instantiation-and-authentication">Client Instantiation and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/stream_examples.html#external-data">External Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/stream_examples.html#energistream-data-and-metadata">Energistream Data and Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/stream_examples.html#presentation-and-analysis-examples">Presentation and Analysis Examples</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">EnergiStream API Client</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>README</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/source/includeme.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="readme">
+<h1>README<a class="headerlink" href="#readme" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="energistream">
+<h1>EnergiStream<a class="headerlink" href="#energistream" title="Permalink to this headline">¶</a></h1>
+<p>EnergiStream is an open source Python client for interacting with EnergiStream API, from MelRok.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install EnergiStream from source, clone the git repository to your local machine</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone git@github.com:melrok/energistream-py.git
+</pre></div>
+</div>
+<p>In the <tt class="code docutils literal"><span class="pre">energistream</span></tt> root directory (same one where you found this file after cloning the git repo), execute</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo pip install -e .
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>EnergiStream has a few key dependancies:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://pandas.pydata.org/">pandas</a>: &gt;= 0.14.1</li>
+<li><a class="reference external" href="http://docs.python-requests.org/">requests</a>: &gt;= 1.2.3</li>
+<li><a class="reference external" href="https://pythonhosted.org/testfixtures/">testfixtures</a></li>
+</ul>
+<p>All requirements are specified in the <cite>requirements.txt</cite>. One can attempt to install these alongside the <cite>EnergiStream</cite> installation via</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo pip install -r requirements.txt -e .
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="energistream-guide">
+<h1>EnergiStream Guide<a class="headerlink" href="#energistream-guide" title="Permalink to this headline">¶</a></h1>
+<p>A quick guide to some of the core EnergiStream functionality. Examples and additional documentation are available at <a class="reference external" href="http://melrok.github.io/energistream-py/">GitHub Pages</a>.</p>
+<p><strong>Note</strong> : Always refer to the doctrings for all methods for a detailed summary of functionality.</p>
+<div class="section" id="importing">
+<h2>Importing<a class="headerlink" href="#importing" title="Permalink to this headline">¶</a></h2>
+<p>To import the energistream library :</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">energistream</span> <span class="kn">as</span> <span class="nn">es</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="client-instantiation-and-authentication">
+<h2>Client Instantiation and Authentication<a class="headerlink" href="#client-instantiation-and-authentication" title="Permalink to this headline">¶</a></h2>
+<p><tt class="code docutils literal"><span class="pre">EnergiStreamClient</span></tt> takes a valid username and password and establishes a unique session with temporary credentials.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">EnergiStreamClient</span><span class="p">(</span><span class="s">&#39;USER&#39;</span><span class="p">,</span> <span class="s">&#39;PASS&#39;</span><span class="p">,</span> <span class="n">include_sensors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><tt class="code docutils literal"><span class="pre">authenticate</span></tt> uses the user credentials to authenticate the instantiated client in the event that authentication was not previously established or has lapsed.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">authenticate</span>
+</pre></div>
+</div>
+<p>The <tt class="code docutils literal"><span class="pre">is_authenticated</span></tt> method returns a simple boolean true or false when asked if the client authentication is still valid.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">is_authenticated</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="external-data">
+<h2>External Data<a class="headerlink" href="#external-data" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="code docutils literal"><span class="pre">get_weather</span></tt> method returns a dataframe of hourly temperature and relative humidity data for the instantiated client&#8217;s associated physical location.</p>
+<p><strong>Note</strong>: This data is collected from third party sources. Weather ID is an energistream unique key and not associated to any third party ID schema.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_weather</span><span class="p">(</span><span class="n">weather_id</span> <span class="o">=</span> <span class="mi">102</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s">&#39;12/29/2014&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s">&#39;1/29/2015&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="energistream-data-and-metadata">
+<h2>Energistream Data and Metadata<a class="headerlink" href="#energistream-data-and-metadata" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="code docutils literal"><span class="pre">get_energy</span></tt> method accepts a sensor ID and returns a dataframe relating active and reactive energy, current and voltage RMS, and total Energy.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_energy</span><span class="p">(</span><span class="mi">3505</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s">&#39;12/29/2014&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s">&#39;1/29/2015&#39;</span><span class="p">,</span> <span class="n">tz</span> <span class="o">=</span> <span class="s">&#39;local&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <tt class="code docutils literal"><span class="pre">search_group_tree</span></tt> method accepts a keyword and searches the instantiated client for matching sensor groups returning group names, sensor group ID, and assigned sensors.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">search_group_tree</span><span class="p">(</span><span class="s">&#39;Engineering&#39;</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <tt class="code docutils literal"><span class="pre">base_group_level</span></tt> column designates the grouping hierarchy by levels, with 0 being root groups.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">stream</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">base_group_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <tt class="code docutils literal"><span class="pre">sensors</span></tt> method returns a dataframe describing the individual sensors associated with the instantiated energistream client ID. This includes the sensor ID, the associated group ID, time zone, and a multiplier based on the method of measurement i.e. one, two, or three channel.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">sensors</span>
+</pre></div>
+</div>
+<p>The <tt class="code docutils literal"><span class="pre">get_boards</span></tt> method returns a dataframe describing the boards associated with the instantiated energistream client ID. This includes
+the boards serial number, version, display name, and model.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_boards</span>
+</pre></div>
+</div>
+<p>The <tt class="code docutils literal"><span class="pre">get_demand</span></tt> method returns power data for a given sensor group(demand or generation) at multiple resolutions (1, 5, 10, 15, and 30 minutes, daily, weekly, monthly, and yearly). Start and end date may be specified as well as the timezone and desired resolution.</p>
+<p><strong>Note</strong>: Defaults to the last thirty days and fifteen minute resolution.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_demand</span><span class="p">(</span><span class="mi">157</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../_examples/stream_examples.html" class="btn btn-neutral float-right" title="Getting Started"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to the EnergiStream API Client documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, MelRok LLC.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

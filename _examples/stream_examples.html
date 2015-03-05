@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; EnergiStream API Client 0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="EnergiStream API Client 0 documentation" href="../index.html"/>
+        <link rel="prev" title="README" href="../source/includeme.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> EnergiStream API Client</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../source/includeme.html">README</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/includeme.html#energistream">EnergiStream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../source/includeme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/includeme.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../source/includeme.html#energistream-guide">EnergiStream Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../source/includeme.html#importing">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/includeme.html#client-instantiation-and-authentication">Client Instantiation and Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/includeme.html#external-data">External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/includeme.html#energistream-data-and-metadata">Energistream Data and Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#client-instantiation-and-authentication">Client Instantiation and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#external-data">External Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#energistream-data-and-metadata">Energistream Data and Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#presentation-and-analysis-examples">Presentation and Analysis Examples</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">EnergiStream API Client</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/_examples/stream_examples.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Import the energiscore library and other dependencies.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">energistream</span> <span class="kn">as</span> <span class="nn">es</span> <span class="c"># Imports the Energiscore Library</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span> <span class="c"># Imports the Pandas Library for Dataframe handling</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="kn">as</span> <span class="nn">dt</span> <span class="c"># Imports the datetime Library for timeseries handling</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span> <span class="c"># Imports the Numpy Library for series handling</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span> <span class="c"># Imports scipy package</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span> <span class="c"># Imports seaborn for graph generation</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c"># Imports matplotlib for math functionality</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre>%load_ext autoreload
+%autoreload 2
+# Running autoreload will reload any updated modules before running a cell.
+%pylab inline
+%matplotlib inline
+#pylab inline and matplotlib inline will cause charts to be displayed within ipython notebook.
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+<div class="section" id="client-instantiation-and-authentication">
+<h1>Client Instantiation and Authentication<a class="headerlink" href="#client-instantiation-and-authentication" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">EnergiStreamClient</span></tt> takes a valid username and password and establishes a unique session with temporary credentials.</p>
+<p>Note : The following cell extracts the user credentials from an external text file to avoid displaying sensitive client information.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;../credentials.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+
+<span class="n">USER</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">PASS</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">EnergiStreamClient</span><span class="p">(</span><span class="n">USER</span><span class="p">,</span> <span class="n">PASS</span><span class="p">,</span> <span class="n">include_sensors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="external-data">
+<h1>External Data<a class="headerlink" href="#external-data" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">get_weather</span></tt> returns a dataframe of hourly temperature and relative humidity data for the instantiated client&#8217;s associated physical location. Note : This data is collected from third party sources. Weather ID is an energistream unique key and not associated to any third party ID schema.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_weather</span><span class="p">(</span><span class="n">weather_id</span> <span class="o">=</span> <span class="mi">102</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s">&#39;12/29/2014&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s">&#39;1/29/2015&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c</th>
+      <th>f</th>
+      <th>h</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2014-12-29 00:00:00+00:00</th>
+      <td> 15.6</td>
+      <td> 60</td>
+      <td> 42</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 01:00:00+00:00</th>
+      <td> 15.0</td>
+      <td> 59</td>
+      <td> 48</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 02:00:00+00:00</th>
+      <td> 13.3</td>
+      <td> 56</td>
+      <td> 55</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 03:00:00+00:00</th>
+      <td> 13.3</td>
+      <td> 56</td>
+      <td> 53</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 04:00:00+00:00</th>
+      <td> 12.2</td>
+      <td> 54</td>
+      <td> 57</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="energistream-data-and-metadata">
+<h1>Energistream Data and Metadata<a class="headerlink" href="#energistream-data-and-metadata" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">get_energy</span></tt> accepts a sensor ID and returns a dataframe relating active and reactive energy, current and voltage RMS, and total Energy.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_energy</span><span class="p">(</span><span class="mi">3505</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s">&#39;12/29/2014&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s">&#39;1/29/2015&#39;</span><span class="p">,</span> <span class="n">tz</span> <span class="o">=</span> <span class="s">&#39;local&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>activeEnergy</th>
+      <th>currentRMS</th>
+      <th>powerFactor</th>
+      <th>reactiveEnergy</th>
+      <th>sensorId</th>
+      <th>totalEnergy</th>
+      <th>voltageRMS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2014-12-29 00:01:00-08:00</th>
+      <td> 43566.626</td>
+      <td> 27.44</td>
+      <td> 0.93</td>
+      <td> 13801.665</td>
+      <td> 3505</td>
+      <td> 45700.513</td>
+      <td> 490.52</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 00:02:00-08:00</th>
+      <td> 43566.850</td>
+      <td> 27.74</td>
+      <td> 0.94</td>
+      <td> 13801.740</td>
+      <td> 3505</td>
+      <td> 45700.749</td>
+      <td> 490.00</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 00:03:00-08:00</th>
+      <td> 43567.077</td>
+      <td> 30.02</td>
+      <td> 0.93</td>
+      <td> 13801.816</td>
+      <td> 3505</td>
+      <td> 45700.989</td>
+      <td> 489.29</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 00:04:00-08:00</th>
+      <td> 43567.310</td>
+      <td> 28.41</td>
+      <td> 0.93</td>
+      <td> 13801.901</td>
+      <td> 3505</td>
+      <td> 45701.236</td>
+      <td> 491.54</td>
+    </tr>
+    <tr>
+      <th>2014-12-29 00:05:00-08:00</th>
+      <td> 43567.541</td>
+      <td> 27.81</td>
+      <td> 0.94</td>
+      <td> 13801.986</td>
+      <td> 3505</td>
+      <td> 45701.482</td>
+      <td> 491.18</td>
+    </tr>
+  </tbody>
+</table>
+</div><p><tt class="docutils literal"><span class="pre">search_group_tree</span></tt> accepts a keyword and searches the instantiated client for matching sensor groups returning group names, sensor group ID, and assigned sensors.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">search_group_tree</span><span class="p">(</span><span class="s">&#39;Engineering&#39;</span><span class="p">,</span><span class="n">case</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>description</th>
+      <th>load_type</th>
+      <th>sensorGroups</th>
+      <th>sensors</th>
+      <th>groupMultiplier</th>
+      <th>time_zone</th>
+      <th>weatherStationId</th>
+      <th>base_group_level</th>
+    </tr>
+    <tr>
+      <th>sensorGroupId</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2177</th>
+      <td>       Rockwell Engineering Center - Sub Groups</td>
+      <td>       Rockwell Engineering Center - Sub Groups</td>
+      <td> building</td>
+      <td>     Int64Index([2179, 2178, 2180], dtype='int64')</td>
+      <td>                                              None</td>
+      <td>                   [1, 1, 1]</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 1</td>
+    </tr>
+    <tr>
+      <th>2258</th>
+      <td> Engineering and Computing Trailer - Sub Groups</td>
+      <td> Engineering and Computing Trailer - Sub Groups</td>
+      <td> building</td>
+      <td>                                              None</td>
+      <td> [{u'timeZoneId': 67, u'sourceTypeId': 1, u'des...</td>
+      <td>                        None</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 1</td>
+    </tr>
+    <tr>
+      <th>157 </th>
+      <td>   Engineering Laboratory Facility - Sub Groups</td>
+      <td>                          Feed to ELF Sub Loads</td>
+      <td> building</td>
+      <td> Int64Index([196, 193, 192, 195, 194], dtype='i...</td>
+      <td>                                              None</td>
+      <td>             [1, 1, 1, 1, 1]</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 1</td>
+    </tr>
+    <tr>
+      <th>255 </th>
+      <td>                 Engineering Tower - Sub Groups</td>
+      <td>                          Feed to ET Sub Groups</td>
+      <td> building</td>
+      <td> Int64Index([258, 256, 257, 262, 263, 260, 261,...</td>
+      <td>                                              None</td>
+      <td> [1, 1, 1, 1, 1, 1, 1, 1, 1]</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 1</td>
+    </tr>
+    <tr>
+      <th>265 </th>
+      <td>          Engineering Lecture Hall - Sub Groups</td>
+      <td>                           Feed ELH Sub Groups </td>
+      <td> building</td>
+      <td> Int64Index([274, 266, 271, 267, 270, 273, 272]...</td>
+      <td>                                              None</td>
+      <td>       [1, 1, 1, 3, 3, 3, 3]</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 1</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Sensors are grouped in a heirarchy by level.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">stream</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">base_group_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>description</th>
+      <th>load_type</th>
+      <th>sensorGroups</th>
+      <th>sensors</th>
+      <th>groupMultiplier</th>
+      <th>time_zone</th>
+      <th>weatherStationId</th>
+      <th>base_group_level</th>
+    </tr>
+    <tr>
+      <th>sensorGroupId</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>216 </th>
+      <td>        UCI - MelRok Electric Meter Sub Groups</td>
+      <td>         Feed to Individual Loads at UCI Buildings</td>
+      <td> campus</td>
+      <td> Int64Index([2203, 2193, 2198, 2188, 2177, 2181...</td>
+      <td> None</td>
+      <td> [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 0</td>
+    </tr>
+    <tr>
+      <th>734 </th>
+      <td>             UCI - Electric Distribution Loads</td>
+      <td> Electrical Meters that Distribute Electricity ...</td>
+      <td> campus</td>
+      <td> Int64Index([732, 733, 1836, 1837, 1838, 1839, ...</td>
+      <td> None</td>
+      <td>                      [1, 1, 1, 1, 1, 1, -1, 1, 1]</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 0</td>
+    </tr>
+    <tr>
+      <th>769 </th>
+      <td> UCI - Building Heating &amp; Chilled Water Meters</td>
+      <td>                      14 KEP-ES749 for 6 Buildings</td>
+      <td> campus</td>
+      <td> Int64Index([774, 775, 772, 771, 776, 777, 1824...</td>
+      <td> None</td>
+      <td>                       [1, 1, 1, 1, 1, 1, 1, 1, 1]</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 0</td>
+    </tr>
+    <tr>
+      <th>1843</th>
+      <td>                     UCI - Total Electric Load</td>
+      <td>                Total Electric Load for UCI Campus</td>
+      <td> campus</td>
+      <td> Int64Index([735, 1842, 1484, 1483, 1486, 1485,...</td>
+      <td> None</td>
+      <td> [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...</td>
+      <td> America/Los_Angeles</td>
+      <td> 102</td>
+      <td> 0</td>
+    </tr>
+  </tbody>
+</table>
+</div><p><tt class="docutils literal"><span class="pre">sensors</span></tt> returns a dataframe describing the individual sensors associated with the instantiated energistream client ID. This includes the sensor ID, the associated group ID, time zone, and a multiplier based on the method of measurement i.e. one, two, or three channel.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>description</th>
+      <th>iconId</th>
+      <th>multiplier</th>
+      <th>name</th>
+      <th>properties</th>
+      <th>sensorFunctionTypeId</th>
+      <th>sensorGroupId</th>
+      <th>sourceTypeId</th>
+      <th>time_zone</th>
+    </tr>
+    <tr>
+      <th>sensorId</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8812</th>
+      <td> D40010000628-04</td>
+      <td> 21</td>
+      <td> 1</td>
+      <td> ECT B1</td>
+      <td> [{u'name': u'Phase', u'value': u'A'}]</td>
+      <td> 1</td>
+      <td> 2258</td>
+      <td> 1</td>
+      <td> America/Los_Angeles</td>
+    </tr>
+    <tr>
+      <th>8813</th>
+      <td> D40010000628-05</td>
+      <td> 21</td>
+      <td> 1</td>
+      <td> ECT B2</td>
+      <td> [{u'name': u'Phase', u'value': u'C'}]</td>
+      <td> 1</td>
+      <td> 2258</td>
+      <td> 1</td>
+      <td> America/Los_Angeles</td>
+    </tr>
+    <tr>
+      <th>8814</th>
+      <td> D40010000628-06</td>
+      <td> 21</td>
+      <td> 1</td>
+      <td> ECT B3</td>
+      <td> [{u'name': u'Phase', u'value': u'B'}]</td>
+      <td> 1</td>
+      <td> 2258</td>
+      <td> 1</td>
+      <td> America/Los_Angeles</td>
+    </tr>
+    <tr>
+      <th>8815</th>
+      <td> D40010000628-07</td>
+      <td> 21</td>
+      <td> 1</td>
+      <td> ECT B4</td>
+      <td> [{u'name': u'Phase', u'value': u'A'}]</td>
+      <td> 1</td>
+      <td> 2258</td>
+      <td> 1</td>
+      <td> America/Los_Angeles</td>
+    </tr>
+    <tr>
+      <th>8816</th>
+      <td> D40010000628-08</td>
+      <td> 21</td>
+      <td> 1</td>
+      <td> ECT B5</td>
+      <td> [{u'name': u'Phase', u'value': u'C'}]</td>
+      <td> 1</td>
+      <td> 2258</td>
+      <td> 1</td>
+      <td> America/Los_Angeles</td>
+    </tr>
+  </tbody>
+</table>
+</div><p><tt class="docutils literal"><span class="pre">get_boards</span></tt> returns a dataframe describing the boards associated with the instantiated energistream client ID. This includes
+the boards serial number, version, display name, and model.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_boards</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currentConfigVersion</th>
+      <th>displayName</th>
+      <th>firmwareVersion</th>
+      <th>manufacturer</th>
+      <th>model</th>
+      <th>sensors</th>
+      <th>timeZoneId</th>
+    </tr>
+    <tr>
+      <th>serialNumber</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>C20006000002</th>
+      <td> 26</td>
+      <td> MSTB First Floor 2</td>
+      <td> 1</td>
+      <td> MelRok Manufacturer</td>
+      <td> EN-12</td>
+      <td> [{u'timeZoneId': 67, u'sourceTypeId': 1, u'nam...</td>
+      <td> 67</td>
+    </tr>
+    <tr>
+      <th>C20006000003</th>
+      <td> 21</td>
+      <td> MSTB First Floor 3</td>
+      <td> 1</td>
+      <td> MelRok Manufacturer</td>
+      <td> EN-12</td>
+      <td> [{u'timeZoneId': 67, u'sourceTypeId': 1, u'nam...</td>
+      <td> 67</td>
+    </tr>
+    <tr>
+      <th>C20006000004</th>
+      <td> 25</td>
+      <td>  MSTB Second Floor</td>
+      <td> 1</td>
+      <td> MelRok Manufacturer</td>
+      <td> EN-12</td>
+      <td> [{u'timeZoneId': 67, u'sourceTypeId': 1, u'nam...</td>
+      <td> 67</td>
+    </tr>
+    <tr>
+      <th>A30006000036</th>
+      <td> 20</td>
+      <td>       Aldrich Hall</td>
+      <td> 1</td>
+      <td> MelRok Manufacturer</td>
+      <td> EN-12</td>
+      <td> [{u'timeZoneId': 67, u'sourceTypeId': 1, u'nam...</td>
+      <td> 67</td>
+    </tr>
+    <tr>
+      <th>A30006000041</th>
+      <td> 18</td>
+      <td> Social Science LAB</td>
+      <td> 1</td>
+      <td> MelRok Manufacturer</td>
+      <td> EN-12</td>
+      <td> [{u'timeZoneId': 67, u'sourceTypeId': 1, u'nam...</td>
+      <td> 67</td>
+    </tr>
+  </tbody>
+</table>
+</div><p><tt class="docutils literal"><span class="pre">get_demand</span></tt> returns the fifteen minute demand rate for the given sensor group. Start and end date may be specified as well as the timezone and desired resolution. Note : Defaults to the last thirty days and fifteen minute resolution.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span><span class="o">.</span><span class="n">get_demand</span><span class="p">(</span><span class="mi">157</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>2015-02-05 13:44:59-08:00     43.339200
+2015-02-05 13:59:59-08:00     44.102333
+2015-02-05 14:14:59-08:00     79.040466
+2015-02-05 14:29:59-08:00    131.523733
+2015-02-05 14:44:59-08:00     45.773866
+Name: kW, dtype: float64
+</pre></div>
+</div>
+</div>
+<div class="section" id="presentation-and-analysis-examples">
+<h1>Presentation and Analysis Examples<a class="headerlink" href="#presentation-and-analysis-examples" title="Permalink to this headline">¶</a></h1>
+<p>seaborn is used to plot aesthetically pleasing charts and graphs. The following commands set up the presentation by defining the seaborn aesthetics, chart sizing, and figure scaling to be used.
+.. code:: python</p>
+<blockquote>
+<div>sns.set(font=&#8217;Bitstream Vera Sans&#8217;)
+sns.set_context(&#8216;poster&#8217;)
+#sns.set_context(&#8220;poster&#8221;, font_scale=1.7)
+sns.plotting_context()</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mf">17.6</span><span class="p">,</span>
+ <span class="s">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mf">19.200000000000003</span><span class="p">,</span>
+ <span class="s">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">12.8</span><span class="p">,</span>   <span class="mf">8.8</span><span class="p">]),</span>
+ <span class="s">&#39;grid.linewidth&#39;</span><span class="p">:</span> <span class="mf">1.6</span><span class="p">,</span>
+ <span class="s">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="mf">16.0</span><span class="p">,</span>
+ <span class="s">&#39;lines.linewidth&#39;</span><span class="p">:</span> <span class="mf">2.8000000000000003</span><span class="p">,</span>
+ <span class="s">&#39;lines.markeredgewidth&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+ <span class="s">&#39;lines.markersize&#39;</span><span class="p">:</span> <span class="mf">11.200000000000001</span><span class="p">,</span>
+ <span class="s">&#39;patch.linewidth&#39;</span><span class="p">:</span> <span class="mf">0.48</span><span class="p">,</span>
+ <span class="s">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="mf">16.0</span><span class="p">,</span>
+ <span class="s">&#39;xtick.major.pad&#39;</span><span class="p">:</span> <span class="mf">11.200000000000001</span><span class="p">,</span>
+ <span class="s">&#39;xtick.major.width&#39;</span><span class="p">:</span> <span class="mf">1.6</span><span class="p">,</span>
+ <span class="s">&#39;xtick.minor.width&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+ <span class="s">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="mf">16.0</span><span class="p">,</span>
+ <span class="s">&#39;ytick.major.pad&#39;</span><span class="p">:</span> <span class="mf">11.200000000000001</span><span class="p">,</span>
+ <span class="s">&#39;ytick.major.width&#39;</span><span class="p">:</span> <span class="mf">1.6</span><span class="p">,</span>
+ <span class="s">&#39;ytick.minor.width&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>A large dataset at a sufficiently fine resolution may contain very large short duration demand spikes which are not indicative of the actual demand. These spikes may be filtered out, carefully, by masking demand values that exceed a defined limit.
+.. code:: python</p>
+<blockquote>
+<div>demand = stream.get_demand(216)
+multi = 1.5
+mask = (demand &lt; 0) | (demand &gt; demand.mean() + multi * demand.std())</div></blockquote>
+<p>Seen below is the demand charted over a thirty day time period. This can provide insight into demand over time such as due to changes in the weather or building usage. Note the regularly spaced peaks during the work-day and comparatively smaller spikes which occur on off-days. There is a three day period of reduced demand coinciding with February 16th, a Federal Holiday.
+.. code:: python</p>
+<blockquote>
+<div><p>demand.mask(mask).plot()</p>
+<p>plt.title(&#8216;30 Day Demand for UCI - Melrok Loads&#8217;)
+plt.ylabel(&#8216;Demand [kW]&#8217;)</p>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x11659c790&gt;
+</pre></div>
+</div>
+<img alt="../_images/stream_examples_30_1.png" src="../_images/stream_examples_30_1.png" />
+<p>Taking the mean and median of the days creates a single chart representing an average demand day. This is useful for examining a typical demand profile such as to obverve the time of peak loads and the duration of regular demand spikes. In this case the peak occurs in the middle of the afternoon around 3 PM. Comparing the mean and median offers quick insight into the daily variation in demand.
+.. code:: python</p>
+<blockquote>
+<div><p>mean = demand.mask(mask).groupby([demand.index.hour,demand.index.minute]).mean().plot(color = &#8216;b&#8217;, label = &#8216;mean&#8217;)
+median = demand.mask(mask).groupby([demand.index.hour,demand.index.minute]).median().plot(color = &#8216;g&#8217;, label = &#8216;median&#8217;)
+legend()</p>
+<p>plt.title(&#8216;Demand Profile for UCI - Melrok Loads&#8217;)
+plt.ylabel(&#8216;Demand [kW]&#8217;)</p>
+<p>plt.xticks( (16 * arange(7)),[&#8216;12AM&#8217;,&#8216;4AM&#8217;,&#8216;8AM&#8217;,&#8216;12PM&#8217;,&#8216;4PM&#8217;,&#8216;8PM&#8217;,&#8216;12AM&#8217;])</p>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre>([&lt;matplotlib.axis.XTick at 0x11659c050&gt;,
+  &lt;matplotlib.axis.XTick at 0x112f7b810&gt;,
+  &lt;matplotlib.axis.XTick at 0x1168cf290&gt;,
+  &lt;matplotlib.axis.XTick at 0x1168cfa50&gt;,
+  &lt;matplotlib.axis.XTick at 0x1168c7210&gt;,
+  &lt;matplotlib.axis.XTick at 0x1168c7990&gt;,
+  &lt;matplotlib.axis.XTick at 0x1168b9090&gt;],
+ &lt;a list of 7 Text xticklabel objects&gt;)
+</pre></div>
+</div>
+<img alt="../_images/stream_examples_32_1.png" src="../_images/stream_examples_32_1.png" />
+<p>A histogram is another useful way to examine the distribution of the demand, plotting demand magnitude by the total number of events in the data set.
+.. code:: python</p>
+<blockquote>
+<div><p>demand.mask(mask).hist(bins=80)</p>
+<p>plt.title(&#8216;Demand Histogram - Melrok Loads&#8217;)
+plt.ylabel(&#8216;Number of Events&#8217;)
+plt.xlabel(&#8216;Demand [kW]&#8217;)</p>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1168ee210&gt;
+</pre></div>
+</div>
+<img alt="../_images/stream_examples_34_1.png" src="../_images/stream_examples_34_1.png" />
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../source/includeme.html" class="btn btn-neutral" title="README"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, MelRok LLC.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
