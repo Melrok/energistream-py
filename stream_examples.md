@@ -67,7 +67,7 @@ import energistream as es # Imports the Energistream Library
 EnergiStreamClient takes a valid username and password and establishes a unique session with temporary credentials.
 
 ```python
-stream = es.EnergiStreamClient('***REMOVED***', '***REMOVED***', include_sensors=True)
+stream = es.EnergiStreamClient('USER', 'PASS', include_sensors=True)
 ```
 
 Authenticate uses the user credentials to authenticate the instantiated client in the event that authentication was not previously established or has lapsed.
@@ -84,7 +84,7 @@ stream.is_authenticated
 
 ###External Data
 
-The `get_weather` method returns a dataframe of hourly temperature and relative humidity data for the instantiated client's associated physical location. 
+The `get_weather` method returns a dataframe of hourly temperature and relative humidity data for the instantiated client's associated physical location.
 >**Note**: This data is collected from third party sources. Weather ID is an energistream unique key and not associated to any third party ID schema.
 
 ```python
@@ -124,7 +124,7 @@ the boards serial number, version, display name, and model.
 stream.get_boards
 ```
 
-The `get_demand` method returns power data for a given sensor group(demand or generation) at multiple resolutions (1, 5, 10, 15, and 30 minutes, daily, weekly, monthly, and yearly). Start and end date may be specified as well as the timezone and desired resolution. 
+The `get_demand` method returns power data for a given sensor group(demand or generation) at multiple resolutions (1, 5, 10, 15, and 30 minutes, daily, weekly, monthly, and yearly). Start and end date may be specified as well as the timezone and desired resolution.
 
 >**Note**: Defaults to the last thirty days and fifteen minute resolution.
 

@@ -2,11 +2,11 @@
 __pycache__/
 *.py[cod]
 
-#Ignore these unrelated mac files! (This line Added by User)
-.DS_Store
-energistream/.DS_Store
-docs/.DS_Store
+#Ignore these unrelated mac files!
+*.DS_Store
 
+#IPython
+*.ipynb_checkpoints
 
 # C extensions
 *.so
