@@ -51,7 +51,7 @@ Client Instantiation and Authentication
 
 .. code:: python
 
-  stream = es.EnergiStreamClient('UCI_Admin', 'UCI_Admin', include_sensors=True)
+  stream = es.EnergiStreamClient('USER', 'PASS', include_sensors=True)
 
 :code:`authenticate` uses the user credentials to authenticate the instantiated client in the event that authentication was not previously established or has lapsed.
 
