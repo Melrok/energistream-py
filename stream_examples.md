@@ -1,6 +1,21 @@
-# EnergiStream
+##Introduction
 
-EnergiStream is an open source Python client for interacting with EnergiStream API, from MelRok.
+**Energistream** is a building energy use analysis and optimization tool,developed by MelRok.
+
+###Main Features
+
+Energistream provides an advanced and accurate assesment of building energy use,
+providing actionable information for energy optimiztion. Features include:
+
+* Normalizing with weather.
+
+* Baseline Measurement and Verification:
+
+* Breakdown of Energy Use
+
+* Automated Demand Response Potential
+
+* Load Shifting Potential
 
 ###Installation
 
