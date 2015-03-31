@@ -1,7 +1,14 @@
+
+
 EnergiStream
 ************
 
-EnergiStream is an open source Python client for interacting with EnergiStream API, from MelRok.
+EnergiStream is an open source Python client for interacting with EnergiStream API, from MelRok_.
+
+.. _MelRok: http://www.MelRok.org/
+.. image:: https://travis-ci.org/Melrok/energistream-py.svg
+    :target: https://travis-ci.org/Melrok/energistream-py
+
 
 Installation
 ^^^^^^^^^^^^
