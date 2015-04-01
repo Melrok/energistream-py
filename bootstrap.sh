@@ -76,11 +76,11 @@ conda info -a
 
 # Install dependencies for energiscore via conda
 echo "Installing dependencies for EnergiStream-Py..."
-deps='pandas pip'
+deps='pandas requests pip'
 conda create -q -n test-env $deps || true
 echo "Activating test environment..."
 source activate test-env
-pip install testfixtures coveralls
+pip install testfixtures
 
 # Install unittest dependencies
 conda install nose coverage mock
