@@ -3,13 +3,31 @@ python:
   - "2.7"
 
 virtualenv:
-  system_site_packages: true
+  system_site_packages: false
+
+before_install:
+  - 'echo Working directory is: $PWD'
+  - 'echo Home direcotry is: $HOME'
+  - 'echo Path is: $PATH'
+  - sudo bash ./bootstrap.sh ~
 
 install:
-  - sudo pip install -r requirements.txt
+  - 'echo Working directory is: $PWD'
+  - 'echo Home direcotry is: $HOME'
+  - 'echo PATH before: $PATH'
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - 'echo PATH after: $PATH'
+  - source activate test-env
+  #- sudo pip install . -r requirements.txt
+  - sudo pip install -e .
   - sudo pip install coveralls
 
-script: nosetests --with-coverage --cover-package=energistream-py
+script:
+  - 'echo Working directory is: $PWD'
+  - 'echo Home direcotry is: $HOME'
+  - 'echo Path is: $PATH'
+  - source activate test-env
+  - nosetests --with-coverage --cover-package=energistream-py
 
 after_success:
   - coveralls
