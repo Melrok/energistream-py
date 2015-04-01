@@ -27,7 +27,7 @@ script:
   - 'echo Home direcotry is: $HOME'
   - 'echo Path is: $PATH'
   - source activate test-env
-  - nosetests --with-coverage --cover-package=energistream-py
+  - nosetests --with-coverage --cover-package=energistream
 
 after_success:
   - coveralls
