@@ -10,6 +10,7 @@ before_install:
   - 'echo Home direcotry is: $HOME'
   - 'echo Path is: $PATH'
   - sudo bash ./bootstrap.sh ~
+  - sudo pip install codecov
 
 install:
   - 'echo Working directory is: $PWD'
@@ -20,14 +21,13 @@ install:
   - source activate test-env
   #- sudo pip install . -r requirements.txt
   - sudo pip install -e .
-  - sudo pip install coveralls
 
 script:
   - 'echo Working directory is: $PWD'
   - 'echo Home direcotry is: $HOME'
   - 'echo Path is: $PATH'
   - source activate test-env
-  - nosetests --with-coverage --cover-package=energistream
+  - nosetests --with-coverage --cover-branches --cover-package=energistream
 
 after_success:
-  - coveralls
+  - codecov
