@@ -9,8 +9,8 @@ EnergiStream is an open source Python client for interacting with EnergiStream A
 .. image:: https://travis-ci.org/Melrok/energistream-py.svg
     :target: https://travis-ci.org/Melrok/energistream-py
 
-.. image:: https://coveralls.io/repos/Melrok/energistream-py/badge.svg
-    :target: https://coveralls.io/r/Melrok/energistream-py
+.. image:: https://codecov.io/github/Melrok/energistream-py/coverage.svg?branch=master
+    :target: https://codecov.io/github/Melrok/energistream-py?branch=master
 
 
 
