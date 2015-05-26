@@ -259,7 +259,7 @@ class EnergiStreamClient(object):
         # tokenid=1EFAF5BE2B924EC0ABDAF4691DAD4793613017EE
 
         #Convert to properly formatted timestamp representations
-        group = self.sensors.loc[sensor_id]
+        group = self.sensors_unique().loc[sensor_id]
         if tz is 'local':
             tz = group['time_zone']
         start, end = _sanitize_dates(start, end, tz=tz)
@@ -528,7 +528,7 @@ class EnergiStreamClient(object):
                  handled_errors, **kwargs):
 
         url = '{0}/{1}/{2}'.format(self._base_uri, self._melrok_uri,
-                                                    rel_resource_path);
+                                   rel_resource_path);
         args_dict = dict()
         if params is not None:
             args_dict.update(params)
@@ -557,6 +557,11 @@ class EnergiStreamClient(object):
             msg = ('Resource response code ({0}) not recognized by '
                    'client.').format(response_code)
             raise(TypeError(msg))
+
+
+    def sensors_unique(self):
+        s = self.sensors
+        return s.groupby(s.index).first()
 
 class UnauthorizedAccess(ValueError):
     """
@@ -656,3 +661,5 @@ def _sanitize_dates(start=None, end=None, tz=None, str_format='%Y%m%d%H%M%S'):
         msg = msg.format(start, end)
         raise(ValueError(msg))
     return start, end
+
+
