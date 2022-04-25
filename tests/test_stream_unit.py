@@ -32,7 +32,7 @@ class UnitTestsEnergiStreamClientWithMocks(unittest.TestCase):
         self.es_client.account_id = self.account_id
 
     def tearDown(self):
-        print 'tearDown()'
+        print('tearDown()')
 
     @log_capture()
     def test_given_username_none_auth_error(self, lc):
@@ -428,41 +428,41 @@ class UnitTestsEnergiStreamClientWithMocks(unittest.TestCase):
 
     def mock_simple_weather_response(self):
         json_data = {"values": [
-            {u'h': 49.0, u'c': 18.9, u'ts': u'20141219185300', u'f': 66.0},
-            {u'h': 45.0, u'c': 20.0, u'ts': u'20141219195300', u'f': 68.0},
-            {u'h': 49.0, u'c': 20.6, u'ts': u'20141219205300', u'f': 66.0}]}
+            {'h': 49.0, 'c': 18.9, 'ts': '20141219185300', 'f': 66.0},
+            {'h': 45.0, 'c': 20.0, 'ts': '20141219195300', 'f': 68.0},
+            {'h': 49.0, 'c': 20.6, 'ts': '20141219205300', 'f': 66.0}]}
         return self.mock_response_json(json_data)
 
     def mock_simple_request_demand(self):
         json_data = {'consumptions': [
-            {u'to': u'20130831065959', u'completed': False,
-             u'from': u'20130831064500', u'value': 5432.606866},
-            {u'to': u'20130831071459', u'completed': False,
-             u'from': u'20130831070000', u'value': 1234.877266},
-            {u'to': u'20130831072959', u'completed': False,
-             u'from': u'20130831071500', u'value': 1111.028733}]}
+            {'to': '20130831065959', 'completed': False,
+             'from': '20130831064500', 'value': 5432.606866},
+            {'to': '20130831071459', 'completed': False,
+             'from': '20130831070000', 'value': 1234.877266},
+            {'to': '20130831072959', 'completed': False,
+             'from': '20130831071500', 'value': 1111.028733}]}
         return self.mock_response_json(json_data)
 
     def mock_simple_get_groups(self):
-        json_data = {u'timeZoneId': 67,
-                     u'name': u'Some Electric Meter Sub Groups',
-                     u'sourceId': 0,
-                     u'iconId': 10,
-                     u'sensorGroupId': 222,
-                     u'groupVersion': 0,
-                     u'multiplier': 1,
-                     u'weatherStationId': 99,
-                     u'capacityAmps': 100,
-                     u'sensorGroups': [{u'timeZoneId': 67,
-                                        u'name': u'Some Electric Meter Sub Groups',
-                                        u'sourceId': 0,
-                                        u'iconId': 10,
-                                        u'sensorGroupId': 222,
-                                        u'groupVersion': 0,
-                                        u'multiplier': 1,
-                                        u'weatherStationId': 99,
-                                        u'capacityAmps': 100}],
-                     u'description': u'Total Electric Load for Some Campus'}
+        json_data = {'timeZoneId': 67,
+                     'name': 'Some Electric Meter Sub Groups',
+                     'sourceId': 0,
+                     'iconId': 10,
+                     'sensorGroupId': 222,
+                     'groupVersion': 0,
+                     'multiplier': 1,
+                     'weatherStationId': 99,
+                     'capacityAmps': 100,
+                     'sensorGroups': [{'timeZoneId': 67,
+                                        'name': 'Some Electric Meter Sub Groups',
+                                        'sourceId': 0,
+                                        'iconId': 10,
+                                        'sensorGroupId': 222,
+                                        'groupVersion': 0,
+                                        'multiplier': 1,
+                                        'weatherStationId': 99,
+                                        'capacityAmps': 100}],
+                     'description': 'Total Electric Load for Some Campus'}
         return self.mock_response_json(json_data)
 
     def mock_deep_get_groups(self):

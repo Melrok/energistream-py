@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import os
+import importlib
 
 try:
     import sys
-    reload(sys).setdefaultencoding("UTF-8")
+    importlib.reload(sys).setdefaultencoding("UTF-8")
 except:
     pass
 

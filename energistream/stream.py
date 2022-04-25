@@ -336,19 +336,19 @@ class EnergiStreamClient(object):
             msg = ('Value \'{0}\' for `data_format` not '
                    'recognized. Must be one of {1}').format(data_format,
                                                             _data_formats)
-            raise(ValueError(msg))
+            raise ValueError
 
         #
         # Define function parameters
         #
         #Check resolution, follows pandas offset alias convention:
         #pandas.pydata.org/pandas-docs/dev/timeseries.html#offset-aliases
-        if resolution not in _RESOLUTIONS.values():
-            if resolution not in _RESOLUTIONS.keys():
+        if resolution not in list(_RESOLUTIONS.values()):
+            if resolution not in list(_RESOLUTIONS.keys()):
                 msg = ('Value \'{0}\' for `resolution` not recognized. Must '
                        'be one of {1}').format(resolution,
                                                _RESOLUTIONS)
-                raise(ValueError(msg))
+                raise ValueError
             resolution = _RESOLUTIONS[resolution]
         metric = 'EnergyDemand'
         group_data = self.groups.loc[group_id]
@@ -464,15 +464,15 @@ class EnergiStreamClient(object):
         groups_df = groups_df.drop(drop_cols, axis=1)
 
         if self._include_sensors:
-            reordered = [u'name', u'description', u'load_type',
-                         u'sensorGroups', u'sensors', u'groupMultiplier',
-                         u'time_zone', u'weatherStationId',
-                         u'base_group_level']
+            reordered = ['name', 'description', 'load_type',
+                         'sensorGroups', 'sensors', 'groupMultiplier',
+                         'time_zone', 'weatherStationId',
+                         'base_group_level']
         else:
-            reordered = [u'name', u'description', u'load_type',
-                         u'sensorGroups', u'groupMultiplier',
-                         u'time_zone', u'weatherStationId',
-                         u'base_group_level']
+            reordered = ['name', 'description', 'load_type',
+                         'sensorGroups', 'groupMultiplier',
+                         'time_zone', 'weatherStationId',
+                         'base_group_level']
 
         groups_df = groups_df[reordered]
 
@@ -552,11 +552,11 @@ class EnergiStreamClient(object):
             msg = ('Resource accessed unauthorized ({0}). Check query '
                    'parameters and/or reauthenticate client '
                    'token id.').format(rel_resource_path)
-            raise(UnauthorizedAccess(msg))
+            raise UnauthorizedAccess
         else:  # unknown response code
             msg = ('Resource response code ({0}) not recognized by '
                    'client.').format(response_code)
-            raise(TypeError(msg))
+            raise TypeError
 
 
     def sensors_unique(self):
@@ -659,7 +659,7 @@ def _sanitize_dates(start=None, end=None, tz=None, str_format='%Y%m%d%H%M%S'):
     if start == end:
         msg = 'Demand query start {0} and end {1} times cannot be equal.'
         msg = msg.format(start, end)
-        raise(ValueError(msg))
+        raise ValueError
     return start, end
 
 
