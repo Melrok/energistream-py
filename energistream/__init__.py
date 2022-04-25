@@ -1,2 +1,2 @@
-from stream import EnergiStreamClient
-from stream import UnauthorizedAccess
+from .stream import EnergiStreamClient
+from .stream import UnauthorizedAccess
